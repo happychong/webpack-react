@@ -34,13 +34,29 @@ module.exports = {
     module: {
         //加载器配置
         loaders: [
+            {
+                'loader':'babel-loader',
+                exclude:[
+                    //在node_modules的文件不被babel理会
+                    path.resolve(__dirname,'node_modules'),
+                ],
+                include:[
+                    //指定app这个文件里面的采用babel
+                    path.resolve(__dirname,'app'),
+                ],
+                    test: /\.jsx?$/,
+                    query: {
+                    plugins:['transform-runtime'],
+                        presets:['es2015','stage-0','react']
+                }
+            },
             //LESS文件先通过less-load处理成css，然后再通过css-loader加载成css模块，最后由style-loader加载器对其做最后的处理，
             // 从而运行时可以通过style标签将其应用到最终的浏览器环境
             {test: /\.less/, loader: 'style-loader!css-loader!less-loader'},
             //.css 文件使用 style-loader 和 css-loader 来处理
             { test: /\.css$/, loader: 'style-loader!css-loader' },
             //.js 文件使用 jsx-loader 来编译处理 jsx-loader可以添加?harmony参数使其支持ES6语法
-            { test: /\.js$/,
+            { test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel',
                 query:{
