@@ -9,7 +9,8 @@ var ReactDOM = require('react-dom');
 //加入基本的css，待完善
 //import './project-styles.css';
 
-import Hello from './components/component1.jsx';
+//import Hello from './components/component1.jsx';
+import Hello from './components/composingComponents/tutorial.js';
 //
 //ReactDOM.render(<Component />, document.getElementById('content'));
 
